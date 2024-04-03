@@ -1,7 +1,8 @@
 # Stavkova Kancelarie Maven
 ## _A JavaFX Betting Office Application_
 
-[[Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 Stavkova Kancelarie is a JavaFX application for managing a betting office.
 
