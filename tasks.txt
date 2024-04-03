@@ -1,0 +1,28 @@
+/// STAVKOVA KANCELARIE /////////////
+
+
+1. Core Functionality: +
+   - Implement Loterei
+   - Implement Keno10 (type of lottery where players choose numbers from a set range, typically 1 to 80) +
+   - Implement Zreb (drawing of the win nums) + 
+   - Implement Txt Ticket +
+   - Implement Stavkova Kancelarie
+
+2. Console Testing: +
+   - Create a console-based test for the core functionality
+
+3. GUI (Swing): +
+   - Implement the GUI for the application +
+
+4. Printing and PDF Export:
+   - Implement printing functionality
+   - Implement UI ability to display on ticket it's id, how much does it cost and qr code
+   - Implement PDF export functionality
+
+
+5. Database Integration:
+   - Set up a database
+   - Implement logic for storing data in the database
+
+6. User Application:
+   - Develop a separate user application for interacting with the system

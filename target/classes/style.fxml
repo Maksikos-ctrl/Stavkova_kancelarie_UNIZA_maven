@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+
+
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.stavkova.kancelarie.Controller">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <GridPane fx:id="gameboard" hgap="5.0" vgap="5.0">
+    </GridPane>
+
+    <GridPane fx:id="selectedNumsGridPane" hgap="5.0" vgap="5.0">
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="Pocet cisel:"/>
+            <Spinner fx:id="numOfSelectedNumsInput" promptText="Enter Quantity" />
+            <Label text="Vklad na jedno hracie pole a jedno žrebovanie:"/>
+            <Spinner fx:id="betPerPlayAndDrawInput" promptText="Enter Amount" />
+            <TextField fx:id="rowsInput" promptText="Enter Rows" visible="false"/>
+            <TextField fx:id="colsInput" promptText="Enter Columns" visible="false"/>
+        </VBox>
+        <Button text="Start" onAction="#onStartButtonClick"/>
+    </HBox>
+
+    <VBox fx:id="ticketBox" spacing="5">
+        <Label fx:id="ticketIdLabel" />
+        <Label fx:id="costLabel" />
+    </VBox>
+
+    <HBox alignment="CENTER">
+        <ImageView fx:id="qrCodeImageView"/>
+    </HBox>
+
+
+    <VBox fx:id="resultBox" spacing="10" alignment="CENTER_RIGHT">
+        <Label fx:id="welcomeText"/>
+    </VBox>
+
+</VBox>
