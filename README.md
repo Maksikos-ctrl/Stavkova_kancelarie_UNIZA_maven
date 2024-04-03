@@ -2,7 +2,7 @@
 ## _A JavaFX Betting Office Application_
 
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://app.travis-ci.com/github/Maksikos-ctrl/Stavkova_kancelarie_UNIZA_maven)
+[![Build Status](https://app.travis-ci.com/Maksikos-ctrl/Stavkova_kancelarie_UNIZA_maven.svg?token=UYGmcsn4XrNNXnFFyfvP&branch=master)](https://app.travis-ci.com/github/Maksikos-ctrl/Stavkova_kancelarie_UNIZA_maven)
 
 Stavkova Kancelarie is a JavaFX application for managing a betting office.
 
