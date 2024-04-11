@@ -21,6 +21,16 @@ public class Main extends Application {
         stage.show();
     }
 
+    public static void openNewWindow() throws IOException {
+        Stage newStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/new_window.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.setTitle("New Window");
+        newStage.show();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

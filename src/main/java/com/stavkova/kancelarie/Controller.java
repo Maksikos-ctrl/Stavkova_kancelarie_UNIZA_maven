@@ -2,6 +2,9 @@ package com.stavkova.kancelarie;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,12 +12,16 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-
 
 public class Controller {
     @FXML
@@ -41,6 +48,9 @@ public class Controller {
     private ImageView qrCodeImageView;
 
     private Loterei loterei;
+    private TicketManager ticketManager;
+    private List<Integer> selectedNumbers = new ArrayList<>();
+    private Stage newWindowStage;
 
     public void initialize() {
         numOfSelectedNumsInput.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1));
@@ -62,6 +72,7 @@ public class Controller {
 
         // Initialize Loterei
         loterei = new Loterei(numRows, numCols);
+        ticketManager = new TicketManager(new ArrayList<>());
     }
 
     private void handleButtonClick(Button button, int number) {
@@ -76,8 +87,15 @@ public class Controller {
         int numOfCells = selectedNumsGridPane.getChildren().size();
         if (numOfCells < numOfSelectedNums) {
             Button cell = new Button(String.valueOf(number));
+            cell.setOnAction(event -> handleSelectedNumberClick(cell, number));
             selectedNumsGridPane.add(cell, numOfCells, 0);
+            selectedNumbers.add(number);
         }
+    }
+
+    private void handleSelectedNumberClick(Button button, int number) {
+        selectedNumsGridPane.getChildren().remove(button);
+        selectedNumbers.remove(Integer.valueOf(number));
     }
 
     private boolean checkIfInWinningCombination(int number) {
@@ -87,6 +105,34 @@ public class Controller {
 
     public void onStartButtonClick(ActionEvent event) {
         generateQRCode();
+        addingTicketToTicketBox();
+        openNewWindow();
+    }
+
+    private void openNewWindow() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/new_window.fxml"));
+            Parent root = fxmlLoader.load();
+            NewWindowController newWindowController = fxmlLoader.getController();
+            newWindowController.setTicketId(ticketManager.getTickets().size());
+            newWindowController.addSelectedNumbers(selectedNumbers);
+
+            newWindowStage = new Stage();
+            newWindowStage.setTitle("New Window");
+            Scene scene = new Scene(root);
+            newWindowStage.setScene(scene);
+            newWindowStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addingTicketToTicketBox() {
+        int id = ticketManager.getTickets().size() + 1;
+        double betAmount = betPerPlayAndDrawInput.getValue();
+        Ticket ticket = new Ticket(id, new ArrayList<>(selectedNumbers), betAmount);
+        ticketManager.addTicket(ticket);
+        ticketManager.printTickets();
     }
 
     private void generateQRCode() {
